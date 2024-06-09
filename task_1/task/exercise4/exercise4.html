@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #5: Input check for minimmum number of charecter should be 6 and password match in both input </title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        .err {
+            color: red;
+            font-size: 0.7em;
+        }
+    </style>
+    <script>
+        /* TODO complete this part */
+    </script>
+</head>
+<body>
+
+<form name="pw">
+    <table>
+        <tr>
+            <td>Password (min 6 characters):</td>
+            <td><input type="password" name="password1" id="password1" size="10" placeholder="Password"></td>
+            <td>
+                <div id="pw1_check" class="err"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Repeat password:</td>
+            <td><input type="password" name="password2" id="password2" size="10" placeholder="Password"></td>
+            <td>
+                <div id="pw2_check" class="err"></div>
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Submit" id="submitBtn"/>
+</form>
+
+<script>
+    function validateForm(event) {
+        // Get the values of the password fields
+        const password1 = document.getElementById('password1').value;
+        const password2 = document.getElementById('password2').value;
+
+        // Get the elements for displaying error messages
+        const pw1_check = document.getElementById('pw1_check');
+        const pw2_check = document.getElementById('pw2_check');
+
+        // Clear previous error messages
+        pw1_check.textContent = '';
+        pw2_check.textContent = '';
+
+        // Initialize a flag for form validation
+        let isValid = true;
+
+        // Check if the first password has at least 6 characters
+        if (password1.length < 6) {
+            pw1_check.textContent = 'Password must be at least 6 characters long.';
+            isValid = false;
+        }
+
+        // Check if both passwords match
+        if (password1 !== password2) {
+            pw2_check.textContent = 'Passwords do not match.';
+            isValid = false;
+        }
+
+        // If the form is not valid, prevent submission
+        if (!isValid) {
+            event.preventDefault();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the form element
+        const form = document.forms['pw'];
+
+        // Add event listener for form submission
+        form.addEventListener('submit', validateForm);
+    });
+</script>
+
+
+
+</body>
+</html>
+

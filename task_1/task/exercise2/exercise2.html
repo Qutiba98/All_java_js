@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #2: Changing box color on click</title>
+</head>
+<body>
+
+<div onmousedown="mDown(this)" onmouseup="mUp(this)" onmouseout="mOut(this)" 
+style="background-color:#f1290e;width:90px;height:20px;padding:40px;">
+</div>
+<script>
+function mDown(obj) {
+  obj.style.backgroundColor = "#1ec5e5";
+  obj.innerHTML = "";
+}
+function mUp(obj) {
+  obj.style.backgroundColor="#D94A38";
+  obj.innerHTML="";
+}
+function mOut(obj) {
+            obj.style.backgroundColor = "#83605c"; 
+            obj.innerHTML = "";
+        }
+</script>
+</body>
+</html>
