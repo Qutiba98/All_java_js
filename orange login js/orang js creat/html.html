@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/fonts/HelvNeue55_W1G.woff2" rel="preload" as="font" type="font/woff2" integrity="sha384-R6e0PFLMMV6HBvkQK22ecNfjOzyh89wSndiTC71MuvoaOnhIYgOAGVC0gW0kVN16" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/fonts/HelvNeue75_W1G.woff2" rel="preload" as="font" type="font/woff2" integrity="sha384-ylOkwNNvSwXpWNbpEhI45ruJTXyfQbIb42IxMvSGGcndZBpZ9iAmOFSUl4/Goeqz" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/css/orange-helvetica.min.css" rel="stylesheet" integrity="sha384-A0Qk1uKfS1i83/YuU13i2nx5pk79PkIfNFOVzTcjCMPGKIDj9Lqx9lJmV7cdBVQZ" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/css/boosted.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Boosted Example</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/js/boosted.bundle.min.js"></script>
+    <script src="java.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+
+    <!-- con1 -->
+  
+    <div class="d-flex">
+      <div class="con1"> 
+      <div class="d-flex align-items-stretch">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img id="img2" src="img/2.jpg" class="d-block w-100" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+              <img id="img3" src="img/3.jpg" class="d-block w-100" alt="Image 2">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    <!-- end con1 -->
+
+
+    <!-- nav -->
+
+      <div class="p-1 flex-fill">    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="img/1.png" width="50" height="50" alt="Boosted - Back to Home" loading="lazy">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Help</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Terms & Conditions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- end nav -->
+
+    <!-- con3 -->
+    <div class="con3">
+      <h1>Create an account</h1>
+      <br> <br>
+      <form id="signupForm">
+          <fieldset>
+              <div class="mb-3">
+                  <label for="emailInput" class="form-label is-required">Email address<span class="visually-hidden"> (required)</span></label>
+                  <input type="email" id="emailInput" class="form-control" placeholder="" required>
+                  <div id="emailError" class="error"></div>
+              </div>
+  
+              <div class="mb-3">
+                  <label for="mobileInput" class="form-label is-required">Mobile<span class="visually-hidden"> (required)</span></label>
+                  <input type="tel" id="mobileInput" class="form-control" placeholder="" required>
+                  <div id="mobileError" class="error"></div>
+              </div>
+  
+              <div class="mb-3">
+                  <label for="passwordInput" class="form-label is-required">Create Password<span class="visually-hidden"> (required)</span></label>
+                  <input type="password" id="passwordInput" class="form-control" required>
+                  <div id="passwordError" class="error"></div>
+              </div>
+  
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="termsCheck">
+                  <label class="form-check-label" for="termsCheck">
+                      I agree to the <a class="link-opacity-100" href="#">terms & conditions Orange.</a>
+                  </label>
+              </div>
+              <br>
+  
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkedCheckbox" checked>
+                  <label class="form-check-label" for="checkedCheckbox">Checked checkbox</label>
+              </div>
+              <br>
+  
+              <button type="button" class="btn btn-primary btn-lg mt-2 custom-button1" onclick="validateForm()">Sign Up</button>
+              <br> <br>
+              <button type="button" class="btn btn-primary btn-lg mt-2 custom-button2" onclick="document.location='http://127.0.0.1:5500/orange%20login%2030-05-2024/login.html'">
+                
+                Already have an account? Login</button>
+  
+          </fieldset>
+      </form>
+  </div>
+          <!-- end con3 -->
+
+
+  </div>
+    </div>
+    
+  </body>
+</html>
