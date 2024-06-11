@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>store</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+    <body>
+        <div class="container">
+    
+            <div class="products">
+                <div class="product" onclick="selectProduct(1)">
+                    <img src="11.avif" alt="">
+                    <h2>iphone 13 pro</h2>
+                    <p>900jd</p>
+                </div>
+                <div class="product" onclick="selectProduct(2)">
+                    <img src="22.jpg" alt="">
+                    <h2>headphone</h2>
+                    <p>150jd</p>
+                </div>
+                <div class="product" onclick="selectProduct(3)">
+                    <img src="33.png" alt="">
+                    <h2>keyboard</h2>
+                    <p>60jd</p>
+                </div>
+            </div>
+    
+            <div id="selectedProduct">
+                <p id="selectedProductName"></p>
+                <p id="selectedProductPrice"></p>
+                <input type="number" id="quantity" min="1" value="1">
+                <button onclick="addToCart()">add to cart</button>
+            </div>
+    
+            <div id="cart">
+                <ul id="cartItems"></ul>
+                <p id="totalPrice"> 0 jd</p>
+                <button onclick="saveTotalPrice()">save</button>
+            </div>
+        </div>
+    
+    </body>
+    </html>
+    
+    <script>
+let selectedProduct = null;
+let totalPrice = 0;
+const cartItems = [];
+
+window.onload = function() {
+    const savedTotalPrice = sessionStorage.getItem('totalPrice');
+    if (savedTotalPrice) {
+        totalPrice = parseFloat(savedTotalPrice);
+        document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+    }
+};
+
+function selectProduct(productId) {
+    switch (productId) {
+        case 1:
+            selectedProduct = { name: "iphone 13 pro", price: 900 };
+            break;
+        case 2:
+            selectedProduct = { name: "headphone", price: 150 };
+            break;
+        case 3:
+            selectedProduct = { name: "keyboard", price: 60 };
+            break;
+        default:
+            selectedProduct = null;
+            break;
+    }
+
+    if (selectedProduct) {
+        document.getElementById("selectedProductName").textContent = `: ${selectedProduct.name}`;
+        document.getElementById("selectedProductPrice").textContent = `: ${selectedProduct.price} jd`;
+    }
+}
+
+function addToCart() {
+    if (selectedProduct) {
+        const quantity = parseInt(document.getElementById("quantity").value);
+        const itemTotal = selectedProduct.price * quantity;
+        cartItems.push({ name: selectedProduct.name, price: selectedProduct.price, quantity: quantity });
+
+        const cartList = document.getElementById("cartItems");
+        const listItem = document.createElement("li");
+        listItem.textContent = `${selectedProduct.name}   ${selectedProduct.price}  ${quantity}  ${itemTotal} jd`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "x";
+        deleteButton.classList.add("delete-button");
+        deleteButton.onclick = function() {
+            removeFromCart(listItem, itemTotal);
+        };
+        listItem.appendChild(deleteButton);
+
+        cartList.appendChild(listItem);
+
+        totalPrice += itemTotal;
+        document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+    }
+}
+
+function removeFromCart(item, itemTotal) {
+    const index = cartItems.findIndex(cartItem => cartItem.name === item.firstChild.textContent.split(' - ')[0]);
+    cartItems.splice(index, 1);
+
+    item.remove();
+
+    totalPrice -= itemTotal;
+    document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+}
+
+function saveTotalPrice() {
+    sessionStorage.setItem('totalPrice', totalPrice.toString());
+    alert('تم حفظ السعر الإجمالي بنجاح!');
+}
+    </script>
+</body>
+</html>
