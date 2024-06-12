@@ -67,3 +67,4 @@ function validateMobile(mobile) {
     const re = /^077\d{7}$/;
     return re.test(mobile);
 }
+
