@@ -6,43 +6,39 @@
     <title>store</title>
     <link rel="stylesheet" href="css.css">
 </head>
-    <body>
-        <div class="container">
-    
-            <div class="products">
-                <div class="product" onclick="selectProduct(1)">
-                    <img src="11.avif" alt="">
-                    <h2>iphone 13 pro</h2>
-                    <p>900jd</p>
-                </div>
-                <div class="product" onclick="selectProduct(2)">
-                    <img src="22.jpg" alt="">
-                    <h2>headphone</h2>
-                    <p>150jd</p>
-                </div>
-                <div class="product" onclick="selectProduct(3)">
-                    <img src="33.png" alt="">
-                    <h2>keyboard</h2>
-                    <p>60jd</p>
-                </div>
+<body>
+    <div class="container">
+        <div class="products">
+            <div class="product" onclick="selectProduct(1)">
+                <img src="11.avif" alt="">
+                <h2>iphone 13 pro</h2>
+                <p>900jd</p>
             </div>
-    
-            <div id="selectedProduct">
-                <p id="selectedProductName"></p>
-                <p id="selectedProductPrice"></p>
-                <input type="number" id="quantity" min="1" value="1">
-                <button onclick="addToCart()">add to cart</button>
+            <div class="product" onclick="selectProduct(2)">
+                <img src="22.jpg" alt="">
+                <h2>headphone</h2>
+                <p>150jd</p>
             </div>
-    
-            <div id="cart">
-                <ul id="cartItems"></ul>
-                <p id="totalPrice"> 0 jd</p>
-                <button onclick="saveTotalPrice()">save</button>
+            <div class="product" onclick="selectProduct(3)">
+                <img src="33.png" alt="">
+                <h2>keyboard</h2>
+                <p>60jd</p>
             </div>
         </div>
-    
-    </body>
-    </html>
+
+        <div id="selectedProduct">
+            <p id="selectedProductName"></p>
+            <p id="selectedProductPrice"></p>
+            <input type="number" id="quantity" min="1" value="1">
+            <button onclick="addToCart()">add to cart</button>
+        </div>
+
+        <div id="cart">
+            <ul id="cartItems"></ul>
+            <p id="totalPrice">0 jd</p>
+            <button onclick="saveTotalPrice()">save</button>
+        </div>
+    </div>
     
     <script>
 let selectedProduct = null;
@@ -53,7 +49,7 @@ window.onload = function() {
     const savedTotalPrice = sessionStorage.getItem('totalPrice');
     if (savedTotalPrice) {
         totalPrice = parseFloat(savedTotalPrice);
-        document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+        document.getElementById("totalPrice").textContent = `${totalPrice} jd`;
     }
 };
 
@@ -87,7 +83,7 @@ function addToCart() {
 
         const cartList = document.getElementById("cartItems");
         const listItem = document.createElement("li");
-        listItem.textContent = `${selectedProduct.name}   ${selectedProduct.price}  ${quantity}  ${itemTotal} jd`;
+        listItem.textContent = `${selectedProduct.name} ${selectedProduct.price} jd x ${quantity} = ${itemTotal} jd`;
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "x";
@@ -100,18 +96,18 @@ function addToCart() {
         cartList.appendChild(listItem);
 
         totalPrice += itemTotal;
-        document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+        document.getElementById("totalPrice").textContent = `${totalPrice} jd`;
     }
 }
 
 function removeFromCart(item, itemTotal) {
-    const index = cartItems.findIndex(cartItem => cartItem.name === item.firstChild.textContent.split(' - ')[0]);
+    const index = cartItems.findIndex(cartItem => cartItem.name === item.firstChild.textContent.split(' ')[0]);
     cartItems.splice(index, 1);
 
     item.remove();
 
     totalPrice -= itemTotal;
-    document.getElementById("totalPrice").textContent = ` ${totalPrice} jd`;
+    document.getElementById("totalPrice").textContent = `${totalPrice} jd`;
 }
 
 function saveTotalPrice() {
