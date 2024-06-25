@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Pokemon API Example</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="searchpokemon" placeholder="Enter Pokemon name" />
+      <button onclick="choosepokemon()">Search</button>
+    </div>
+    <img id="imageofpokemon" style="width: 15rem; height: 15rem" />
+
+    <script>
+      function choosepokemon() {
+        const searchpokemon = document
+          .getElementById("searchpokemon")
+          .value.toLowerCase();
+
+        const PokemonAPIURL = `https://pokeapi.co/api/v2/pokemon/${searchpokemon}`;
+        fetch(PokemonAPIURL)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+
+            const pokemonimage = document.getElementById("imageofpokemon");
+            pokemonimage.setAttribute("src", `${data.sprites.front_shiny}`);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

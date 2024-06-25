@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Youtube API Example</title>
+  </head>
+  <body>
+    <div class="location-container">
+      <select
+        class="location-button listcity"
+        id="videos"
+        onchange="youtubevideo()"
+      >
+        <option value="The Story of React Query">
+          The Story of React Query
+        </option>
+        <option
+          value="Append multiple columns to one column - Power Query | @efficiency365"
+          selected
+        >
+          Append multiple columns to one column - Power Query | @efficiency365
+        </option>
+        <option value="Access: Designing a Simple Query">
+          Access: Designing a Simple Query
+        </option>
+      </select>
+    </div>
+    <div id="displaytitle"></div>
+    <br /><br />
+    <div><img id="displaythum" /></div>
+    <br /><br />
+    <div id="displaydesc"></div>
+    <br /><br />
+    <!-- <video width="320" height="240" controls>
+      <source id="displayvid" type="video/mp4" />
+    </video> -->
+
+    <br /><br />
+    <script>
+      function youtubevideo() {
+        const video = document.getElementById("videos").value;
+        const apikey = "AIzaSyA39UQG9KZjyfUEsyPHW_RjL7LeDiU_VY8";
+        const videoAPIURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${video}&key=${apikey}`;
+
+        fetch(videoAPIURL)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+
+            document.getElementById(
+              "displaytitle"
+            ).textContent = `${data.items[0].snippet.title}`;
+
+            const thum = document.getElementById("displaythum");
+            thum.setAttribute(
+              "src",
+              `${data.items[0].snippet.thumbnails.medium.url}`
+            );
+
+            document.getElementById(
+              "displaydesc"
+            ).textContent = `${data.items[0].snippet.description}`;
+
+            const vid = document.getElementById("displayvid");
+            vid.setAttribute("src", `${data.items[0].id.videoId}`);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
